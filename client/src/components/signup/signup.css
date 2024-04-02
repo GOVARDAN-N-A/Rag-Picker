@@ -1,0 +1,54 @@
+.signup-section {
+  background-image: url('file:///D:/project/UPSKILL_MAFIA/client/src/assets/logbg.jpg');
+  background-size: contain;
+  background-position: center;
+}
+
+.signup-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.signup-heading {
+  color: black;
+  margin-bottom: 1rem;
+}
+
+.signup-card {
+  border-radius: 15px;
+}
+
+.signup-card-body {
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.form-group {
+  padding-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.25rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ced4da;
+  box-shadow: none;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: none;
+  background-color: #007bff;
+  color: white;
+}

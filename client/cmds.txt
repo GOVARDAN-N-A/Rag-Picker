@@ -1,0 +1,14 @@
+npm create vite@latest
+npm install bootstrap axios react-router-dom
+create server folder ->  cd server
+npm init -y(To install package.json file)
+npm install express mongoose cors nodemon
+
+Username : govardan
+Password : dWAviAc4dvF6D9lH
+
+mongodb+srv://govardan:dWAviAc4dvF6D9lH@mafia.he8xjst.mongodb.net/?retryWrites=true&w=majority&appName=Mafia
+
+Connection String
+mongodb+srv://govardan:<password>@mafia.he8xjst.mongodb.net/
+
