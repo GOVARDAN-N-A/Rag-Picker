@@ -9,7 +9,7 @@ const Signup = () => {
     fullName: '',
     email: '',
     password: '',
-    profilePicture: '',
+    profilePicture: null,
     dateOfBirth: '',
     gender: '',
     location: '',
@@ -42,11 +42,37 @@ const Signup = () => {
     setFormData({ ...formData, preferredPlayingTimes: updatedTimes });
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData({ ...formData, profilePicture: file }); // Store the File object in state
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    axios.post('http://localhost:3001/signup', formData)
-    navigate('/login');
+    const formDataToSend = new FormData(); // Create a FormData object to send files
+    // Append all form data to FormData object
+    Object.entries(formData).forEach(([key, value]) => {
+      if (key === 'profilePicture') {
+        formDataToSend.append(key, value); // Append the profile picture file
+      } else if (Array.isArray(value)) {
+        value.forEach(item => formDataToSend.append(key, item)); // Handle array values
+      } else {
+        formDataToSend.append(key, value); // Append other form fields
+      }
+    });
+    
+    try {
+      const response = await axios.post('http://localhost:3001/signup', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data' // Set content type for FormData
+        }
+      });
+      console.log(response.data);
+      navigate('/profile');
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle form submission error here
+    }
   };
 
   return (
@@ -74,7 +100,8 @@ const Signup = () => {
 
                 <div className="form-group">
                   <label htmlFor="profilePicture">Profile Picture</label>
-                  <input type="file" name="profilePicture" value={formData.profilePicture} onChange={handleChange} className="form-control" />
+                  <input type="file" name="profilePicture" onChange={handleFileChange} className="form-control" accept="image/*" required />
+                  {formData.profilePicture && <img src={URL.createObjectURL(formData.profilePicture)} alt="Profile" className="preview-image" />}
                 </div>
 
                 <div className="form-group">

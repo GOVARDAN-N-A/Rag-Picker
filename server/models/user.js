@@ -14,8 +14,8 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     profilePicture: {
-        data: Buffer, // This will store the image data
-        contentType: String // This will store the MIME type of the image
+        data: Buffer, // Storing image data as a Buffer
+        contentType: String // Storing MIME type of the image
     },
     dateOfBirth: {
         type: Date

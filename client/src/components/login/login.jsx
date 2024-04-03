@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import './login.css'; // Import the CSS file for styling
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-    const navigate = useNavigate();
 
+    // Check if user is logged in when the component mounts
     useEffect(() => {
         const checkLoggedInStatus = () => {
-            // Check if user is already logged in by reading from sessionStorage
             const loggedIn = sessionStorage.getItem('isLoggedIn');
             if (loggedIn === 'true') {
                 setIsLoggedIn(true);
@@ -32,9 +30,8 @@ const Login = () => {
             const response = await axios.post('http://localhost:3001/login', formData);
             console.log(response.data); // Handle successful login
             if (response.data.message === 'Login successful') {
-                setIsLoggedIn(true);
+                setIsLoggedIn(true); // Set isLoggedIn state to true
                 sessionStorage.setItem('isLoggedIn', 'true'); // Store login status in sessionStorage
-                navigate('/signup'); // Redirect to profile page after successful login
             }
         } catch (error) {
             console.error(error.response.data.message); // Handle login error
@@ -42,9 +39,8 @@ const Login = () => {
     };
 
     const handleLogout = () => {
-        setIsLoggedIn(false);
+        setIsLoggedIn(false); // Set isLoggedIn state to false
         sessionStorage.removeItem('isLoggedIn'); // Remove login status from sessionStorage
-        // You may also want to clear other session data if needed
     };
 
     if (isLoggedIn) {
