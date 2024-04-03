@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import './login.css'; // Import the CSS file for styling
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook for navigation
+import './login.css';
 
-const Login = () => {
+const Login = ({ setUserFullName }) => { // Pass setUserFullName as prop
     const [formData, setFormData] = useState({ email: '', password: '' });
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-
-    // Check if user is logged in when the component mounts
-    useEffect(() => {
-        const checkLoggedInStatus = () => {
-            const loggedIn = sessionStorage.getItem('isLoggedIn');
-            if (loggedIn === 'true') {
-                setIsLoggedIn(true);
-            }
-        };
-
-        checkLoggedInStatus();
-    }, []);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate(); // Initialize useNavigate hook
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,36 +18,21 @@ const Login = () => {
 
         try {
             const response = await axios.post('http://localhost:3001/login', formData);
-            console.log(response.data); // Handle successful login
             if (response.data.message === 'Login successful') {
-                setIsLoggedIn(true); // Set isLoggedIn state to true
-                sessionStorage.setItem('isLoggedIn', 'true'); // Store login status in sessionStorage
+                sessionStorage.setItem('isLoggedIn', 'true');
+                setUserFullName(response.data.userFullName); // Update userFullName state
+                navigate('/'); // Redirect to home page upon successful login
             }
         } catch (error) {
-            console.error(error.response.data.message); // Handle login error
+            setError(error.response.data.message); // Display error message to the user
         }
     };
-
-    const handleLogout = () => {
-        setIsLoggedIn(false); // Set isLoggedIn state to false
-        sessionStorage.removeItem('isLoggedIn'); // Remove login status from sessionStorage
-    };
-
-    if (isLoggedIn) {
-        return (
-            <div className="container">
-                <div className="login-container">
-                    <h2>Welcome, user!</h2>
-                    <button onClick={handleLogout} className="btn">Logout</button>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="container">
             <div className="login-container">
                 <h2 className="mb-4">Login</h2>
+                {error && <p className="error-message">{error}</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <input type="email" name="email" value={formData.email} onChange={handleChange} className="input-field" placeholder="Email" required />

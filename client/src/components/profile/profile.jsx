@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import './profile.css'; // Import CSS file for styling
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
-  const { userId } = useParams(); // Get the userId from the URL parameter
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Fetch user data from the backend server based on the userId
-        const response = await axios.get(`http://localhost:3001/profile/${'660c1e25ea485b057aff70d3'}`);
+        // Retrieve the user ID of the logged-in user from the authentication state
+        const loggedInUserId = sessionStorage.getItem('userId'); // Assuming you stored the user ID in sessionStorage
+        if (!loggedInUserId) {
+          // Handle case where user ID is not found in the authentication state
+          return;
+        }
+
+        // Fetch user data from the backend server based on the logged-in user's ID
+        const response = await axios.get(`http://localhost:3001/profile/${loggedInUserId}`);
         setUser(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -19,7 +24,7 @@ const ProfilePage = () => {
     };
 
     fetchUserData();
-  }, [userId]); // Fetch user data whenever the userId changes
+  }, []); // Fetch user data only once when the component mounts
 
   return (
     <div className="profile-container">
@@ -28,7 +33,7 @@ const ProfilePage = () => {
         <div className="profile-details">
           <div className="profile-picture">
             {user.profilePicture && (
-              <img src={`http://localhost:3001/profile-picture/${'660c1e25ea485b057aff70d3'}`} alt="Profile" className="round-image" />
+              <img src={`http://localhost:3001/profile-picture/${user._id}`} alt="Profile" className="round-image" />
             )}
           </div>
           <div className="profile-info">

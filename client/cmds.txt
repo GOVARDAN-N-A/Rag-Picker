@@ -12,4 +12,9 @@ mongodb+srv://govardan:dWAviAc4dvF6D9lH@mafia.he8xjst.mongodb.net/?retryWrites=t
 Connection String
 mongodb+srv://govardan:<password>@mafia.he8xjst.mongodb.net/
 
+npm install react-bootstrap bootstrap
+(or)
+yarn add react-bootstrap bootstrap
+
+
 npm install multer
