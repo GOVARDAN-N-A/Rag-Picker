@@ -9,6 +9,9 @@
 {
     padding: 0px;
     margin: 0px;
+    background-image: url('./Images/15858271_5664323.jpg');
+    background-position: center;
+    background-size: 100vw 100vh;
 }
 
 .content button
@@ -29,12 +32,12 @@
     color: white;
     font-size:15px;
 }
-.content{
+/* .content{
     background-color: antiquewhite;
     background-image: url('./Images/15858271_5664323.jpg');
     background-position: center;
     background-size:100vw 100vh;
-}
+} */
 .content h1,h3{
     color: rgb(0, 0, 0);
     margin-left: 30px;

@@ -4,19 +4,20 @@ import './profile.css'; // Import CSS file for styling
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
+  const loadingImage = 'https://i.pinimg.com/originals/f9/b6/71/f9b67166545aee0783359c566fab740c.gif'; // Replace 'https://example.com/loading.gif' with the actual URL of your loading image
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Retrieve the user ID of the logged-in user from the authentication state
-        const loggedInUserId = sessionStorage.getItem('userId'); // Assuming you stored the user ID in sessionStorage
-        if (!loggedInUserId) {
-          // Handle case where user ID is not found in the authentication state
+        // Retrieve the user email from sessionStorage
+        const userEmail = sessionStorage.getItem('userEmail');
+        if (!userEmail) {
+          console.error('User email not found in session storage');
           return;
         }
 
-        // Fetch user data from the backend server based on the logged-in user's ID
-        const response = await axios.get(`http://localhost:3001/profile/${loggedInUserId}`);
+        // Fetch user data from the backend server based on the user's email
+        const response = await axios.get(`http://localhost:3001/profile?userEmail=${userEmail}`);
         setUser(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -51,7 +52,7 @@ const ProfilePage = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <img src={loadingImage} alt="Loading" className="loading-image" />
       )}
     </div>
   );

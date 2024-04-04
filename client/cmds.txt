@@ -18,3 +18,5 @@ yarn add react-bootstrap bootstrap
 
 
 npm install multer
+
+npm install react-icons

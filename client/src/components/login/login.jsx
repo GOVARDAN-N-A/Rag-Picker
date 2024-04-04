@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook for navigation
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 
-const Login = ({ setUserFullName }) => { // Pass setUserFullName as prop
+const Login = ({ setUserFullName }) => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [error, setError] = useState(null);
-    const navigate = useNavigate(); // Initialize useNavigate hook
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -15,19 +15,29 @@ const Login = ({ setUserFullName }) => { // Pass setUserFullName as prop
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+      
         try {
             const response = await axios.post('http://localhost:3001/login', formData);
             if (response.data.message === 'Login successful') {
+                const { userFullName, userEmail } = response.data;
                 sessionStorage.setItem('isLoggedIn', 'true');
-                setUserFullName(response.data.userFullName); // Update userFullName state
-                navigate('/'); // Redirect to home page upon successful login
+                sessionStorage.setItem('userFullName', userFullName);
+                sessionStorage.setItem('userEmail', userEmail); // Store user email in sessionStorage
+                setUserFullName(userFullName);
+                // Fetch user profile data based on user email after successful login
+                const loggedInUserEmail = userEmail;
+                const profileResponse = await axios.get(`http://localhost:3001/profile?userEmail=${loggedInUserEmail}`);
+                // Handle profile data as needed
+                console.log('User profile data:', profileResponse.data);
+                navigate('/'); // Redirect to home page after successful login
+            } else {
+                setError(response.data.message);
             }
         } catch (error) {
-            setError(error.response.data.message); // Display error message to the user
+            setError(error.response.data.message);
         }
     };
-
+    
     return (
         <div className="container">
             <div className="login-container">
