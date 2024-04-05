@@ -1,19 +1,20 @@
+// App.js
+
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Signup from './components/signup/signup';
-import Login from './components/login/login'; 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ProfilePage from './components/profile/profile';
 import Navbar from './components/Navbar/navbar';
 import Home from './components/Home/home';
-import UserProfilePage from './components/userProfile/userProfile';
+import ProfilePage from './components/profile/profile'; // Import ProfilePage component
+import SearchedUserProfilePage from './components/SearchedUserProfilePage/SearchedUserProfilePage';
+import Signup from './components//signup/signup';
+import Login from './components/login/login';
 
 function App() {
   const [userFullName, setUserFullName] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
   useEffect(() => {
-    // Check if user is logged in from sessionStorage
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
     const storedFullName = sessionStorage.getItem('userFullName');
     const storedEmail = sessionStorage.getItem('userEmail');
@@ -24,25 +25,21 @@ function App() {
     }
   }, []);
 
-  // Function to handle search query
-  const handleSearch = async (searchTerm) => {
-    // Perform search functionality here
-    console.log('Perform search for:', searchTerm);
+  const handleSearch = async (searchTerm, location) => {
+    console.log('Perform search for:', searchTerm, 'in', location);
+    // Perform search operation using searchTerm and location
   };
 
   return (
     <BrowserRouter>
-      {/* Pass userFullName, userEmail, and handleSearch function as props to Navbar */}
       <Navbar userFullName={userFullName} userEmail={userEmail} handleSearch={handleSearch} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup setUserFullName={setUserFullName} />} />
-        {/* Pass setUserFullName and setUserEmail functions as props to Login component */}
         <Route path="/login" element={<Login setUserFullName={setUserFullName} setUserEmail={setUserEmail} />} />
-        {/* ProfilePage component doesn't need userFullName or userEmail props */}
-        <Route path="/profile/:userEmail" element={<ProfilePage />} /> {/* Pass userEmail as URL 
-        parameter */}
-        <Route path="/userProfile/:userEmail" element={<UserProfilePage />} /> {/* Change the route name */}
+        <Route path="/profile/:userEmail" element={<ProfilePage />} /> {/* Route for viewing own profile */}
+        <Route path="/searched-profile/:city" element={<SearchedUserProfilePage />} />
+        <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </BrowserRouter>
   );

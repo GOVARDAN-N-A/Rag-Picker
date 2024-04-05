@@ -60,19 +60,22 @@ navbar.css
 .suggestions li:hover {
   background-color: #f9f9f9;
 }
+
+
 .suggestions-dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  min-width: 100%;
+  margin-top: 10px; /* Adjust the top margin to create space below the input field */
+  width: calc(100% - 32px); /* Adjust the width of the dropdown */
+  max-height: 200px; /* Limit the height to prevent overflow */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
   list-style: none;
   padding: 0;
-  margin: 0;
   border: 1px solid #ced4da;
   border-top: none;
   background-color: #fff;
 }
+
+
 
 .suggestion-item {
   display: flex;

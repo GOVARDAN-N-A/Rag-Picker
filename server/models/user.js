@@ -23,10 +23,14 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String
     },
-    location: {
-        city: String,
-        state: String,
-        country: String
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    country: {
+        type: String
     },
     sportsInterests: [String],
     skillLevel: String,

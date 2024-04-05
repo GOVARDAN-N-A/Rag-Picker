@@ -21,7 +21,7 @@ mongoose.connect('mongodb+srv://govardan:dWAviAc4dvF6D9lH@mafia.he8xjst.mongodb.
 
 app.post('/signup', upload.single('profilePicture'), async (req, res) => {
   try {
-    const { fullName, email, password, dateOfBirth, gender, location, sportsInterests, skillLevel, preferredPlayingTimes, contactNumber, socialMediaProfiles, bio } = req.body;
+    const { fullName, email, password, dateOfBirth, gender, city, state, country, sportsInterests, skillLevel, preferredPlayingTimes, contactNumber, socialMediaProfiles, bio } = req.body;
 
     let profilePicture;
     if (req.file) {
@@ -38,7 +38,9 @@ app.post('/signup', upload.single('profilePicture'), async (req, res) => {
       profilePicture,
       dateOfBirth,
       gender,
-      location,
+      city,
+      state,
+      country,
       sportsInterests,
       skillLevel,
       preferredPlayingTimes,
@@ -98,28 +100,27 @@ app.get('/profile-picture/:userId', async (req, res) => {
   }
 });
 
-app.get('/users', async (req, res) => {
+app.get('/user/:fullName', async (req, res) => {
   try {
-    let users;
-    if (req.query.search) {
-      users = await User.find({ fullName: { $regex: `^${req.query.search}`, $options: 'i' } });
-    } else {
-      users = await User.find();
+    const userFullName = req.params.fullName;
+    const user = await User.findOne({ fullName: userFullName });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
-    res.status(200).json({ users });
+    res.status(200).json(user);
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching user profile:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 app.get('/search', async (req, res) => {
   try {
-    const searchTerm = req.query.term;
-    const suggestions = await User.find({ fullName: { $regex: searchTerm, $options: 'i' } }).select('fullName profilePicture');
-    res.status(200).json({ suggestions });
+    const city = req.query.city;
+    const users = await User.find({ city: city }).select('fullName city'); // Adjust the fields you want to retrieve
+    res.status(200).json({ users });
   } catch (error) {
-    console.error('Error fetching suggestions:', error);
+    console.error('Error fetching users by city:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });

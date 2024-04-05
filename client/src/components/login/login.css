@@ -1,3 +1,28 @@
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Full screen background */
+html, body {
+    height: 100%;
+    background-image: url(../../assets/home4.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(38, 32, 32, 0.5); /* Reduced opacity for the overlay */
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -6,10 +31,13 @@
 }
 
 .login-container {
-    background: #e0e5ec;
+    background: rgba(206, 193, 201, 0.413); /* Glassmorphism effect */
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 10px 10px 20px #bec8d9, -10px -10px 20px #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 80%;
+    max-width: 400px;
+    z-index: 1000;
 }
 
 .input-group {
@@ -19,11 +47,15 @@
 .input-field {
     width: 100%;
     padding: 15px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 10px;
-    background: #e0e5ec;
-    box-shadow: inset 6px 6px 12px #bec8d9, inset -6px -6px 12px #ffffff;
+    background: #f8f8f8;
     outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: #4b7bec;
 }
 
 .btn {
@@ -35,10 +67,14 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 6px 6px 12px #bec8d9, -6px -6px 12px #ffffff;
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
     background: #3867d6;
+}
+
+.btn:active {
+    transform: scale(0.98);
 }

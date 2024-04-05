@@ -12,7 +12,9 @@ const Signup = () => {
     profilePicture: null,
     dateOfBirth: '',
     gender: '',
-    location: '',
+    city: '', // Add city field
+    state: '', // Add state field
+    country: '', // Add country field
     sportsInterests: [],
     skillLevel: '',
     preferredPlayingTimes: [],
@@ -120,8 +122,18 @@ const Signup = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="location">Location</label>
-                  <input type="text" name="location" value={formData.location} onChange={handleChange} className="form-control" placeholder="City, State, Country" required />
+                  <label htmlFor="city">City</label>
+                  <input type="text" name="city" value={formData.city} onChange={handleChange} className="form-control" placeholder="Enter your city" required />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="state">State</label>
+                  <input type="text" name="state" value={formData.state} onChange={handleChange} className="form-control" placeholder="Enter your state" required />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="country">Country</label>
+                  <input type="text" name="country" value={formData.country} onChange={handleChange} className="form-control" placeholder="Enter your country" required />
                 </div>
 
                 <div className="form-group">

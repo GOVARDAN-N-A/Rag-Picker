@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './profile.css'; // Import CSS file for styling
+import LoadingImage from '../../assets/play.gif'
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
-  const loadingImage = 'https://i.pinimg.com/originals/f9/b6/71/f9b67166545aee0783359c566fab740c.gif'; // Replace 'https://example.com/loading.gif' with the actual URL of your loading image
+  const loadingImage = 'https://cdn.dribbble.com/users/494229/screenshots/1601132/loadingicon14.gif'; // Replace 'https://example.com/loading.gif' with the actual URL of your loading image
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -42,7 +43,7 @@ const ProfilePage = () => {
             <p><strong>Email:</strong> {user.email}</p>
             <p><strong>Date of Birth:</strong> {user.dateOfBirth}</p>
             <p><strong>Gender:</strong> {user.gender}</p>
-            <p><strong>Location:</strong> {user.location}</p>
+            <p><strong>Location:</strong> {user.city}, {user.state}, {user.country}</p>
             <p><strong>Sports Interests:</strong> {user.sportsInterests.join(', ')}</p>
             <p><strong>Skill Level:</strong> {user.skillLevel}</p>
             <p><strong>Preferred Playing Times:</strong> {user.preferredPlayingTimes.join(', ')}</p>

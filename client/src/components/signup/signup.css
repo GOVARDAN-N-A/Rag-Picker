@@ -1,54 +1,90 @@
-.signup-section {
-  background-image: url('file:///D:/project/UPSKILL_MAFIA/client/src/assets/logbg.jpg');
-  background-size: contain;
-  background-position: center;
+/* Body styles */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #cfd9df, #e2ebf0); /* Background gradient */
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  overflow: auto; /* Enable scrolling */
 }
 
+/* Signup container styles */
 .signup-container {
-  max-width: 800px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Change height to min-height */
 }
 
+/* Signup content styles */
+.signup-content {
+  background: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 80%; /* Adjust width as needed */
+  max-width: 500px; /* Maximum width */
+  margin: auto; /* Center horizontally */
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+/* Signup heading styles */
 .signup-heading {
-  color: black;
-  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
 }
 
+/* Signup card styles */
 .signup-card {
-  border-radius: 15px;
+  margin-top: 20px;
 }
 
+/* Signup card body styles */
 .signup-card-body {
-  padding-top: 1.5rem;
-  padding-bottom: 1rem;
+  padding: 20px;
 }
 
+/* Form group styles */
 .form-group {
-  padding-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
-.form-group label {
-  margin-bottom: 0.5rem;
-}
-
+/* Form control styles */
 .form-control {
   width: 100%;
-  height: 3rem;
-  font-size: 1.25rem;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ced4da;
-  box-shadow: none;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
+.form-control:focus {
+  border-color: #007bff;
+}
+
+/* Primary button styles */
 .btn-primary {
+  display: block;
   width: 100%;
-  height: 3rem;
-  font-size: 1.25rem;
-  font-weight: bold;
-  border-radius: 0.5rem;
-  border: none;
-  box-shadow: none;
+  padding: 10px;
   background-color: #007bff;
-  color: white;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Preview image styles */
+.preview-image {
+  margin-top: 10px;
+  max-width: 100%;
+  border-radius: 5px;
 }

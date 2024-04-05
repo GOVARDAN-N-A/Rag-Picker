@@ -29,8 +29,8 @@ function Navbar({ userFullName, userId }) {
     setSearchTerm(term);
 
     try {
-      const response = await axios.get(`http://localhost:3001/search?term=${term}`);
-      setSuggestions(response.data.suggestions);
+      const response = await axios.get(`http://localhost:3001/search?city=${term}`);
+      setSuggestions(response.data.users); // Assuming the response returns an array of user objects with profilePicture and fullName fields
     } catch (error) {
       console.error('Error fetching suggestions:', error);
     }
@@ -38,15 +38,15 @@ function Navbar({ userFullName, userId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Perform search for:', searchTerm);
+    navigate(`/searched-profile/${searchTerm}`);
   };
 
   const handleSuggestionClick = (suggestion) => {
     setSearchTerm(suggestion);
     setSuggestions([]);
-    console.log('Perform search for:', suggestion);
+    navigate(`/searched-profile/${suggestion}`); // Navigate to SearchedUserProfilePage with city name
   };
-
+  
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -107,7 +107,7 @@ function Navbar({ userFullName, userId }) {
               <input
                 type="text"
                 className="form-control me-2"
-                placeholder="Search"
+                placeholder="Search by City and press Enter"
                 value={searchTerm}
                 onChange={handleChange}
                 style={{ width: '250px' }}
@@ -117,7 +117,7 @@ function Navbar({ userFullName, userId }) {
                   {suggestions.map((suggestion, index) => (
                     <SuggestionItem
                       key={index}
-                      profilePicture={`http://localhost:3001/profile-picture/${suggestion._id}`}
+                      profilePicture={suggestion.profilePicture}
                       fullName={suggestion.fullName}
                       onClick={() => handleSuggestionClick(suggestion.fullName)}
                     />
