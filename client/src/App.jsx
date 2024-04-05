@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProfilePage from './components/profile/profile';
 import Navbar from './components/Navbar/navbar';
 import Home from './components/Home/home';
+import ChatApp from './components/chat/chatApp';
 
 function App() {
   const [userFullName, setUserFullName] = useState('');
@@ -40,6 +41,8 @@ function App() {
         <Route path="/login" element={<Login setUserFullName={setUserFullName} setUserEmail={setUserEmail} />} />
         {/* ProfilePage component doesn't need userFullName or userEmail props */}
         <Route path="/profile/:userEmail" element={<ProfilePage />} /> {/* Pass userEmail as URL parameter */}
+        <Route path="/chat" element={<ChatApp />} /> {/* Pass userEmail as URL parameter */}
+        
       </Routes>
     </BrowserRouter>
   );

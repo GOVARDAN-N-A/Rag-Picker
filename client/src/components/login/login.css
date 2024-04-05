@@ -1,15 +1,54 @@
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Full screen background */
+html, body {
+    height: 100%;
+}
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: relative;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../assets/home5.jpeg);
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+    opacity: 0.5; /* Reduce opacity of the background image */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(38, 32, 32, 0.229); /* Transparent overlay */
 }
 
 .login-container {
-    background: #e0e5ec;
+    background: linear-gradient(145deg, #ffffff, #d4d4d4); /* Gradient background */
     padding: 40px;
+    z-index: 1000;
     border-radius: 20px;
-    box-shadow: 10px 10px 20px #bec8d9, -10px -10px 20px #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 80%; /* Set width to 80% of viewport */
+    max-width: 400px; /* Set maximum width to 400px */
 }
 
 .input-group {
@@ -19,11 +58,15 @@
 .input-field {
     width: 100%;
     padding: 15px;
-    border: none;
+    border: 1px solid #ccc; /* Light border */
     border-radius: 10px;
-    background: #e0e5ec;
-    box-shadow: inset 6px 6px 12px #bec8d9, inset -6px -6px 12px #ffffff;
+    background: #f8f8f8; /* Light gray background */
     outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: #4b7bec; /* Highlight border on focus */
 }
 
 .btn {
@@ -31,14 +74,18 @@
     padding: 15px;
     border: none;
     border-radius: 10px;
-    background: #4b7bec;
+    background: #4b7bec; /* Blue button */
     color: white;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 6px 6px 12px #bec8d9, -6px -6px 12px #ffffff;
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
-    background: #3867d6;
+    background: #3867d6; /* Darker blue on hover */
+}
+
+.btn:active {
+    transform: scale(0.98); /* Slight scaling down on click */
 }
