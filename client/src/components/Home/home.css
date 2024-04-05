@@ -45,6 +45,8 @@
 .content h3{
     padding-top: 100px;
 }
-.content h1{
-    padding-top: 50px;
+h1{
+    /* padding-top: 50px; */
+    margin-top: 50px;
+    font-size: 5rem;
 }

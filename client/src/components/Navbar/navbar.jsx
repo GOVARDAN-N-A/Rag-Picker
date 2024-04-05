@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './navbar.css';
-import { FaSearch } from 'react-icons/fa'; // Import search icon from react-icons library
+import { FaSearch } from 'react-icons/fa';
 import logo from '../../assets/logo.png';
+
+const SuggestionItem = ({ profilePicture, fullName, onClick }) => (
+  <li onClick={onClick} className="suggestion-item">
+    <img src={profilePicture} alt="Profile" className="profile-image-small" />
+    <span className="username">{fullName}</span>
+  </li>
+);
+
 function Navbar({ userFullName, userId }) {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const searchContainerRef = useRef(null);
 
   const handleLogout = () => {
     sessionStorage.removeItem('isLoggedIn');
@@ -20,7 +29,6 @@ function Navbar({ userFullName, userId }) {
     setSearchTerm(term);
 
     try {
-      // Make API request to fetch suggestions based on the search term
       const response = await axios.get(`http://localhost:3001/search?term=${term}`);
       setSuggestions(response.data.suggestions);
     } catch (error) {
@@ -30,17 +38,12 @@ function Navbar({ userFullName, userId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform the actual search or navigation based on the selected suggestion
-    // You can implement this based on your application's logic
     console.log('Perform search for:', searchTerm);
   };
 
   const handleSuggestionClick = (suggestion) => {
-    // Set the selected suggestion as the search term
     setSearchTerm(suggestion);
-    // Clear suggestions
     setSuggestions([]);
-    // Perform the actual search or navigation based on the selected suggestion
     console.log('Perform search for:', suggestion);
   };
 
@@ -52,12 +55,25 @@ function Navbar({ userFullName, userId }) {
     setDropdownOpen(false);
   };
 
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+      setSuggestions([]);
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <Link className="navbar-brand d-flex align-items-center" to="/" onClick={closeDropdown}>
           <img src={logo} alt="Logo" width="45" height="35" className="mr-2" />
-          <span className="font-italic" style={{ fontWeight: '900', fontStyle: 'italic', fontSize: '1.5rem'  }}>Sportz</span>
+          <span className="font-italic" style={{ fontWeight: '900', fontStyle: 'italic', fontSize: '1.5rem' }}>Sportz</span>
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onClick={toggleDropdown}>
           <span className="navbar-toggler-icon"></span>
@@ -77,7 +93,7 @@ function Navbar({ userFullName, userId }) {
             {userFullName && (
               <li className="nav-item dropdown">
                 <button className="nav-link dropdown-toggle" onClick={toggleDropdown}>
-                  {userFullName}
+                  <span className="bold-username">{userFullName}</span>
                 </button>
                 <div className={`dropdown-menu${dropdownOpen ? ' show' : ''}`} aria-labelledby="navbarDropdown">
                   <Link className="dropdown-item" to={`/profile/${userId}`} onClick={closeDropdown}>Profile</Link>
@@ -87,29 +103,33 @@ function Navbar({ userFullName, userId }) {
             )}
           </ul>
           <form className="d-flex align-items-center" onSubmit={handleSubmit}>
-            <input 
-              type="text" 
-              className="form-control me-2" 
-              placeholder="Search" 
-              value={searchTerm} 
-              onChange={handleChange} 
-              style={{ width: '250px' }} // Increase the size of search bar
-            />
-            <div style={{ height: '38px' }}> {/* Match the height of the search bar */}
+            <div ref={searchContainerRef} className="position-relative">
+              <input
+                type="text"
+                className="form-control me-2"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={handleChange}
+                style={{ width: '250px' }}
+              />
+              {suggestions.length > 0 && (
+                <ul className="suggestions-dropdown">
+                  {suggestions.map((suggestion, index) => (
+                    <SuggestionItem
+                      key={index}
+                      profilePicture={`http://localhost:3001/profile-picture/${suggestion._id}`}
+                      fullName={suggestion.fullName}
+                      onClick={() => handleSuggestionClick(suggestion.fullName)}
+                    />
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div style={{ height: '38px' }}>
               <button className="btn btn-outline-secondary" type="submit" style={{ padding: '6px' }}>
-                <FaSearch style={{ height: '100%' }} /> {/* Search icon */}
+                <FaSearch style={{ height: '100%' }} />
               </button>
             </div>
-            {/* Display suggestions */}
-            {suggestions.length > 0 && (
-              <ul className="suggestions">
-                {suggestions.map((suggestion, index) => (
-                  <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
-                    {suggestion}
-                  </li>
-                ))}
-              </ul>
-            )}
           </form>
         </div>
       </div>

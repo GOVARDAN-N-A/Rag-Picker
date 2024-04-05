@@ -26,6 +26,7 @@ function App() {
   // Function to handle search query
   const handleSearch = async (searchTerm) => {
     // Perform search functionality here
+    console.log('Perform search for:', searchTerm);
   };
 
   return (

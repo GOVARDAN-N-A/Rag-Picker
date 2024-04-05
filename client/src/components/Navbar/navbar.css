@@ -1,4 +1,4 @@
-/* navbar.css */
+navbar.css
 
 .header {
   background-color: #333;
@@ -59,4 +59,35 @@
 
 .suggestions li:hover {
   background-color: #f9f9f9;
+}
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ced4da;
+  border-top: none;
+  background-color: #fff;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.profile-image-small {
+  width: 32px; /* Adjust the width of the profile image */
+  height: 32px; /* Adjust the height of the profile image */
+  margin-right: 8px;
+  border-radius: 50%; /* Make the image circular */
+}
+
+.bold-username {
+  font-weight: bold;
 }
