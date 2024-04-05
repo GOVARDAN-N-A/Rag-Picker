@@ -1,0 +1,54 @@
+/* global.css */
+
+/* Reset default margin and padding */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Global styles for fonts, colors, etc. */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  /* Container for profile details */
+  .profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile picture */
+  .profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  /* Profile info */
+  .profile-info {
+    margin-left: 20px;
+  }
+  
+  .profile-info p {
+    margin-bottom: 10px;
+  }
+  
+  /* Loading image */
+  .loading-image {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Heading style */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  

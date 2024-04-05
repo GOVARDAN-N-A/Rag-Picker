@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProfilePage from './components/profile/profile';
 import Navbar from './components/Navbar/navbar';
 import Home from './components/Home/home';
+import UserProfilePage from './components/userProfile/userProfile';
 
 function App() {
   const [userFullName, setUserFullName] = useState('');
@@ -39,7 +40,9 @@ function App() {
         {/* Pass setUserFullName and setUserEmail functions as props to Login component */}
         <Route path="/login" element={<Login setUserFullName={setUserFullName} setUserEmail={setUserEmail} />} />
         {/* ProfilePage component doesn't need userFullName or userEmail props */}
-        <Route path="/profile/:userEmail" element={<ProfilePage />} /> {/* Pass userEmail as URL parameter */}
+        <Route path="/profile/:userEmail" element={<ProfilePage />} /> {/* Pass userEmail as URL 
+        parameter */}
+        <Route path="/userProfile/:userEmail" element={<UserProfilePage />} /> {/* Change the route name */}
       </Routes>
     </BrowserRouter>
   );
