@@ -20,3 +20,7 @@ yarn add react-bootstrap bootstrap
 npm install multer
 
 npm install react-icons
+
+npm install express cors axios
+
+npm install --sev-dev nodemon

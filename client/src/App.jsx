@@ -9,6 +9,7 @@ import ProfilePage from './components/profile/profile'; // Import ProfilePage co
 import SearchedUserProfilePage from './components/SearchedUserProfilePage/SearchedUserProfilePage';
 import Signup from './components//signup/signup';
 import Login from './components/login/login';
+import Chat from './components/chat/chatApp'; // Import Chat component
 
 function App() {
   const [userFullName, setUserFullName] = useState('');
@@ -39,6 +40,7 @@ function App() {
         <Route path="/login" element={<Login setUserFullName={setUserFullName} setUserEmail={setUserEmail} />} />
         <Route path="/profile/:userEmail" element={<ProfilePage />} /> {/* Route for viewing own profile */}
         <Route path="/searched-profile/:city" element={<SearchedUserProfilePage />} />
+        <Route path="/chat" element={<Chat userEmail={userEmail} />} /> {/* Route for the chat component */}
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </BrowserRouter>
