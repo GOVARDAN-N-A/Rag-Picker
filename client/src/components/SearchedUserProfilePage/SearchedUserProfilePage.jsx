@@ -87,7 +87,7 @@ const SearchedUserProfilePage = () => {
           return;
         }
         setLoading(true);
-        const response = await axios.get(`http://localhost:3001/search?city=${city}`);
+        const response = await axios.get(`sportz-opal.vercel.app/search?city=${city}`);
         setUsers(response.data.users);
         setLoading(false);
       } catch (error) {
@@ -102,7 +102,7 @@ const SearchedUserProfilePage = () => {
   const handleFollow = async (userId) => {
     try {
       // Send a request to follow the user with userId
-      await axios.post(`http://localhost:3001/follow/${userId}`);
+      await axios.post(`sportz-opal.vercel.app/follow/${userId}`);
       // Update the state or UI to indicate that the user has been followed
     } catch (error) {
       console.error('Error following user:', error);
@@ -112,7 +112,7 @@ const SearchedUserProfilePage = () => {
   const handleUnfollow = async (userId) => {
     try {
       // Send a request to unfollow the user with userId
-      await axios.post(`http://localhost:3001/unfollow/${userId}`);
+      await axios.post(`sportz-opal.vercel.app/unfollow/${userId}`);
       // Update the state or UI to indicate that the user has been unfollowed
     } catch (error) {
       console.error('Error unfollowing user:', error);
@@ -136,10 +136,10 @@ const SearchedUserProfilePage = () => {
               <Col key={user._id} sm={6} md={3}>
                 <div className="card" style={{ width: '250px', margin: '10px', padding: '10px 20px', borderRadius: '15px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', backgroundColor: '#ffffffc7' }}>
                   <div className="card-img">
-                    <img src={`http://localhost:3001/profile-picture/${user._id}`} alt="Profile" style={{ width: '100%', height: '200px', borderRadius: '10px', objectFit: 'cover' }} />
+                    <img src={`sportz-opal.vercel.app/profile-picture/${user._id}`} alt="Profile" style={{ width: '100%', height: '200px', borderRadius: '10px', objectFit: 'cover' }} />
                   </div>
                   <div className="profile text-center">
-                    <img src={`http://localhost:3001/profile-picture/${user._id}`} alt="Profile" style={{ display: 'block', margin: '10px auto 0', width: '80px', height: '80px', borderRadius: '50%', border: '2px solid black', objectFit: 'cover' }} />
+                    <img src={`sportz-opal.vercel.app/profile-picture/${user._id}`} alt="Profile" style={{ display: 'block', margin: '10px auto 0', width: '80px', height: '80px', borderRadius: '50%', border: '2px solid black', objectFit: 'cover' }} />
                   </div>
                   <div className="user-details text-center" style={{ marginTop: '20px' }}>
                     <h4>{user.fullName}</h4>

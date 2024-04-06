@@ -30,7 +30,7 @@ function Navbar({ userFullName, userId }) {
     setSearchTerm(term);
 
     try {
-      const response = await axios.get(`http://localhost:3001/search?city=${term}`);
+      const response = await axios.get(`sportz-opal.vercel.app/search?city=${term}`);
       setSuggestions(response.data.users); // Assuming the response returns an array of user objects with profilePicture and fullName fields
     } catch (error) {
       console.error('Error fetching suggestions:', error);

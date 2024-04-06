@@ -16,7 +16,7 @@ const Login = ({ setUserFullName }) => {
         e.preventDefault();
       
         try {
-            const response = await axios.post('http://localhost:3001/login', formData);
+            const response = await axios.post('sportz-opal.vercel.app/login', formData);
             if (response.data.message === 'Login successful') {
                 const { userFullName, userEmail } = response.data;
                 sessionStorage.setItem('isLoggedIn', 'true');
@@ -25,7 +25,7 @@ const Login = ({ setUserFullName }) => {
                 setUserFullName(userFullName);
                 // Fetch user profile data based on user email after successful login
                 const loggedInUserEmail = userEmail;
-                const profileResponse = await axios.get(`http://localhost:3001/profile?userEmail=${loggedInUserEmail}`);
+                const profileResponse = await axios.get(`sportz-opal.vercel.app/profile?userEmail=${loggedInUserEmail}`);
                 // Handle profile data as needed
                 console.log('User profile data:', profileResponse.data);
                 navigate('/'); // Redirect to home page after successful login

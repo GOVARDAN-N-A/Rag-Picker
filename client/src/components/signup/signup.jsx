@@ -64,7 +64,7 @@ const Signup = () => {
     });
     
     try {
-      const response = await axios.post('http://localhost:3001/signup', formDataToSend, {
+      const response = await axios.post('sportz-opal.vercel.app/signup', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type for FormData
         }

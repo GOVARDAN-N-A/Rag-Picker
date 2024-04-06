@@ -18,7 +18,7 @@ const ProfilePage = () => {
         }
 
         // Fetch user data from the backend server based on the user's email
-        const response = await axios.get(`http://localhost:3001/profile?userEmail=${userEmail}`);
+        const response = await axios.get(`sportz-opal.vercel.app/profile?userEmail=${userEmail}`);
         setUser(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -35,7 +35,7 @@ const ProfilePage = () => {
         <div className="profile-details">
           <div className="profile-picture">
             {user.profilePicture && (
-              <img src={`http://localhost:3001/profile-picture/${user._id}`} alt="Profile" className="round-image" />
+              <img src={`sportz-opal.vercel.app/profile-picture/${user._id}`} alt="Profile" className="round-image" />
             )}
           </div>
           <div className="profile-info">
