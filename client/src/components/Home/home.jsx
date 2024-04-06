@@ -1,5 +1,6 @@
 import React from 'react';
 import './home.css';
+import Footer from '../Footer/footer';
 import Navbar from '../Navbar/navbar'; // Ensure the correct case for component name
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
         
       </div>
     </div>
+    
   );
 }
 

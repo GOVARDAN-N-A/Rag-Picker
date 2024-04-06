@@ -22,7 +22,7 @@ const Events = () => {
   return (
     <>
       <br />
-      <h2>LOCATION BASED SEARCH</h2>
+      <h2>Sports Matches</h2>
       <br />
       {detail && (
         <div className="modal fade show" tabIndex="-1" role="dialog" style={{ display: 'block' }}>

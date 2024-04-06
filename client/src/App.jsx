@@ -1,5 +1,3 @@
-// App.js
-
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -11,7 +9,7 @@ import Signup from './components//signup/signup';
 import Login from './components/login/login';
 import Chat from './components/chat/chatApp'; // Import Chat component
 import Product from './components/Products/product'
-
+// import Footer from './components/Footer/footer'; // Import Footer component
 
 function App() {
   const [userFullName, setUserFullName] = useState('');

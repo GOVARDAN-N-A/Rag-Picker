@@ -138,7 +138,7 @@ const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 const User = require('./models/user');
-
+require('dotenv').config();
 const app = express();
 const upload = multer();
 
@@ -146,12 +146,13 @@ app.use(express.json());
 app.use(cors({ origin: 'http://localhost:5173' }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-mongoose.connect('mongodb+srv://govardan:dWAviAc4dvF6D9lH@mafia.he8xjst.mongodb.net/Mafia', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
 .then(() => console.log('Connected to MongoDB Atlas'))
 .catch(error => console.error('Error connecting to MongoDB Atlas:', error));
+
 
 // Follow a user
 app.post('/follow/:userId', async (req, res) => {
