@@ -10,6 +10,8 @@ import SearchedUserProfilePage from './components/SearchedUserProfilePage/Search
 import Signup from './components//signup/signup';
 import Login from './components/login/login';
 import Chat from './components/chat/chatApp'; // Import Chat component
+import Product from './components/Products/product'
+
 
 function App() {
   const [userFullName, setUserFullName] = useState('');
@@ -41,6 +43,8 @@ function App() {
         <Route path="/profile/:userEmail" element={<ProfilePage />} /> {/* Route for viewing own profile */}
         <Route path="/searched-profile/:city" element={<SearchedUserProfilePage />} />
         <Route path="/chat" element={<Chat userEmail={userEmail} />} /> {/* Route for the chat component */}
+        <Route path="/events" element={<Product />} />
+
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </BrowserRouter>

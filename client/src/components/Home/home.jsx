@@ -10,7 +10,7 @@ const Home = () => {
 
         <h3> Unite | Engage | Triumph</h3> <br />
 
-        <button>Get started</button><br />
+        <a href="/events"><button>Get started</button><br /></a>
         
       </div>
     </div>
