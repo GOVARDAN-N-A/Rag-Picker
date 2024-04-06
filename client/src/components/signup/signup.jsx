@@ -70,7 +70,7 @@ const Signup = () => {
         }
       });
       console.log(response.data);
-      navigate('/profile');
+      navigate('/login');
     } catch (error) {
       console.error('Error:', error);
       // Handle form submission error here

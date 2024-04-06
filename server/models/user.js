@@ -37,7 +37,9 @@ const userSchema = new mongoose.Schema({
     preferredPlayingTimes: [String],
     contactNumber: String,
     socialMediaProfiles: String,
-    bio: String
+    bio: String,
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
 const User = mongoose.model('User', userSchema);

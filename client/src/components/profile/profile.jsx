@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './profile.css'; // Import CSS file for styling
-import LoadingImage from '../../assets/play.gif'
+import LoadingImage from '../../assets/play.gif';
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -30,7 +30,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-container">
-      <h2>Profile Details</h2>
+      <h1>Profile Details</h1>
       {user ? (
         <div className="profile-details">
           <div className="profile-picture">
@@ -39,17 +39,39 @@ const ProfilePage = () => {
             )}
           </div>
           <div className="profile-info">
-            <p><strong>Full Name:</strong> {user.fullName}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Date of Birth:</strong> {user.dateOfBirth}</p>
-            <p><strong>Gender:</strong> {user.gender}</p>
-            <p><strong>Location:</strong> {user.city}, {user.state}, {user.country}</p>
-            <p><strong>Sports Interests:</strong> {user.sportsInterests.join(', ')}</p>
-            <p><strong>Skill Level:</strong> {user.skillLevel}</p>
-            <p><strong>Preferred Playing Times:</strong> {user.preferredPlayingTimes.join(', ')}</p>
-            <p><strong>Contact Number:</strong> {user.contactNumber}</p>
-            <p><strong>Social Media Profiles:</strong> {user.socialMediaProfiles}</p>
-            <p><strong>Bio:</strong> {user.bio}</p>
+            <div className="profile-item">
+              <strong>Full Name:</strong> {user.fullName}
+            </div>
+            <div className="profile-item">
+              <strong>Email:</strong> {user.email}
+            </div>
+            <div className="profile-item">
+              <strong>Date of Birth:</strong> {user.dateOfBirth}
+            </div>
+            <div className="profile-item">
+              <strong>Gender:</strong> {user.gender}
+            </div>
+            <div className="profile-item">
+              <strong>Location:</strong> {user.city}, {user.state}, {user.country}
+            </div>
+            <div className="profile-item">
+              <strong>Sports Interests:</strong> {user.sportsInterests.join(', ')}
+            </div>
+            <div className="profile-item">
+              <strong>Skill Level:</strong> {user.skillLevel}
+            </div>
+            <div className="profile-item">
+              <strong>Preferred Playing Times:</strong> {user.preferredPlayingTimes.join(', ')}
+            </div>
+            <div className="profile-item">
+              <strong>Contact Number:</strong> {user.contactNumber}
+            </div>
+            <div className="profile-item">
+              <strong>Social Media Profiles:</strong> {user.socialMediaProfiles}
+            </div>
+            <div className="profile-item">
+              <strong>Bio:</strong> {user.bio}
+            </div>
           </div>
         </div>
       ) : (

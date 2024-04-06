@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './login.css';
 
 const Login = ({ setUserFullName }) => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -39,18 +38,18 @@ const Login = ({ setUserFullName }) => {
     };
     
     return (
-        <div className="container">
-            <div className="login-container">
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <div style={{ background: 'rgba(206, 193, 201, 0.413)', padding: '40px', borderRadius: '20px', boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)', width: '80%', maxWidth: '400px', zIndex: '1000' }}>
                 <h2 className="mb-4">Login</h2>
-                {error && <p className="error-message">{error}</p>}
+                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <form onSubmit={handleSubmit}>
-                    <div className="input-group">
-                        <input type="email" name="email" value={formData.email} onChange={handleChange} className="input-field" placeholder="Email" required />
+                    <div style={{ marginBottom: '20px' }}>
+                        <input type="email" name="email" value={formData.email} onChange={handleChange} style={{ width: '100%', padding: '15px', border: '1px solid #ccc', borderRadius: '10px', background: '#f8f8f8', outline: 'none', transition: 'border-color 0.3s ease' }} placeholder="Email" required />
                     </div>
-                    <div className="input-group">
-                        <input type="password" name="password" value={formData.password} onChange={handleChange} className="input-field" placeholder="Password" required />
+                    <div style={{ marginBottom: '20px' }}>
+                        <input type="password" name="password" value={formData.password} onChange={handleChange} style={{ width: '100%', padding: '15px', border: '1px solid #ccc', borderRadius: '10px', background: '#f8f8f8', outline: 'none', transition: 'border-color 0.3s ease' }} placeholder="Password" required />
                     </div>
-                    <button type="submit" className="btn">Login</button>
+                    <button type="submit" style={{ width: '100%', padding: '15px', border: 'none', borderRadius: '10px', background: '#4b7bec', color: 'white', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', transition: 'background-color 0.3s ease, transform 0.2s ease' }}>Login</button>
                 </form>
             </div>
         </div>

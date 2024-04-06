@@ -1,50 +1,35 @@
 .profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .profile-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 900px;
-  }
-  
-  .profile-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column width as needed */
-    gap: 10px; /* Add gap between grid items */
-  }
-  
-  .profile-info p {
-    margin: 0; /* Remove default margin */
-    padding: 10px; /* Add padding for spacing within each cell */
-    border: 1px solid #ccc; /* Add border around each cell */
-    border-radius: 5px; /* Add border radius for rounded corners */
-  }
-  
-  .profile-info h3 {
-    margin: 10px 0; /* Add margin to separate h3 from other elements */
-  }
-    .round-image {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    margin-bottom: 20px;
-    border: 4px solid #fff; /* Add border around the image */
-  }
-  
-  /* Add hover effect for the profile picture */
-  .round-image:hover {
-    border: 4px solid #007bff; /* Change border color on hover */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Utilize full page height */
+  text-align: center;
+}
+
+.profile-details {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Limit maximum width */
+  width: 90%; /* Take up 90% of available width */
+  font-size: 20px; /* Increase font size */
+}
+
+.profile-item {
+  margin-bottom: 10px;
+}
+
+.round-image {
+  border-radius: 50%;
+  width: 200px; /* Increase image size */
+  height: 200px; /* Increase image size */
+  margin-bottom: 20px;
+  border: 4px solid #fff; /* Add border around the image */
+}
+
+.loading-image {
+  width: 100px; /* Adjust width of loading image */
+  height: 100px; /* Adjust height of loading image */
+}

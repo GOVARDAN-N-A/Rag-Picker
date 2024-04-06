@@ -21,7 +21,8 @@ function Navbar({ userFullName, userId }) {
 
   const handleLogout = () => {
     sessionStorage.removeItem('isLoggedIn');
-    navigate('/login');
+    window.location.reload()
+    navigate('/');
   };
 
   const handleChange = async (e) => {
@@ -83,7 +84,7 @@ function Navbar({ userFullName, userId }) {
             {!userFullName && (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/login">Login</Link>
+                  <Link className="nav-link" to="/login" state={{ from: window.location.pathname }}>Login</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/signup">Signup</Link>
@@ -102,16 +103,19 @@ function Navbar({ userFullName, userId }) {
               </li>
             )}
           </ul>
-          <form className="d-flex align-items-center" onSubmit={handleSubmit}>
+          <form className="d-flex align-items-center search-form" onSubmit={handleSubmit}>
             <div ref={searchContainerRef} className="position-relative">
               <input
                 type="text"
-                className="form-control me-2"
-                placeholder="Search by City and press Enter"
+                className="form-control me-2 search-input"
+                style={{border: '1px solid black'}}
+                placeholder="Search by City"
                 value={searchTerm}
                 onChange={handleChange}
-                style={{ width: '250px' }}
               />
+              <button className="btn btn-outline-secondary search-btn" type="submit">
+                <FaSearch className="search-icon" />
+              </button>
               {suggestions.length > 0 && (
                 <ul className="suggestions-dropdown">
                   {suggestions.map((suggestion, index) => (
@@ -124,11 +128,6 @@ function Navbar({ userFullName, userId }) {
                   ))}
                 </ul>
               )}
-            </div>
-            <div style={{ height: '38px' }}>
-              <button className="btn btn-outline-secondary" type="submit" style={{ padding: '6px' }}>
-                <FaSearch style={{ height: '100%' }} />
-              </button>
             </div>
           </form>
         </div>

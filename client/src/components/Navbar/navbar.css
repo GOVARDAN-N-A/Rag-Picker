@@ -1,81 +1,61 @@
-navbar.css
+/* navbar.css */
 
-.header {
-  background-color: #333;
-  overflow: hidden;
-  position: relative; /* Make the header a positioned container */
-}
+/* Add your existing styles here */
 
-.header a {
-  float: left;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.header a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.header a.active {
-  background-color: #4CAF50;
-  color: white;
+.search-form {
+  position: relative;
 }
 
 .search-container {
-  position: relative; /* Make the search container a positioned container */
+  position: relative;
 }
 
-.search-container input[type="text"] {
-  padding: 14px 16px;
-  margin: 0;
-  border: none;
-  font-size: 16px;
+.search-input {
+  width: 250px;
+  padding: 10px;
+  border: 2px solid #ccc; /* Add border */
+  border-radius: 5px;
+  outline: none;
 }
 
-.suggestions {
+.search-btn {
   position: absolute;
-  top: 100%; /* Position below the input field */
+  right: 0;
+  top: 0;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search-icon {
+  height: 100%;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
   left: 0;
   z-index: 1;
   background-color: white;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   list-style-type: none;
   margin: 0;
   padding: 0;
   width: 100%;
-  max-height: 200px; /* Limit the height to prevent overflow */
-  overflow-y: auto; /* Enable vertical scrolling if needed */
+  max-height: 200px;
+  overflow-y: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.suggestions li {
+.suggestions-dropdown li {
   padding: 12px 16px;
   cursor: pointer;
 }
 
-.suggestions li:hover {
+.suggestions-dropdown li:hover {
   background-color: #f9f9f9;
 }
-
-
-.suggestions-dropdown {
-  position: absolute;
-  margin-top: 10px; /* Adjust the top margin to create space below the input field */
-  width: calc(100% - 32px); /* Adjust the width of the dropdown */
-  max-height: 200px; /* Limit the height to prevent overflow */
-  overflow-y: auto; /* Enable vertical scrolling if needed */
-  list-style: none;
-  padding: 0;
-  border: 1px solid #ced4da;
-  border-top: none;
-  background-color: #fff;
-}
-
-
 
 .suggestion-item {
   display: flex;
@@ -85,10 +65,10 @@ navbar.css
 }
 
 .profile-image-small {
-  width: 32px; /* Adjust the width of the profile image */
-  height: 32px; /* Adjust the height of the profile image */
+  width: 32px;
+  height: 32px;
   margin-right: 8px;
-  border-radius: 50%; /* Make the image circular */
+  border-radius: 50%;
 }
 
 .bold-username {

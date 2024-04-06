@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProductData from './productData'
+import ProductData from './ProductData';
 import './pro.css';
 import { FaMapLocationDot } from "react-icons/fa6";
 
@@ -49,7 +49,7 @@ const Events = () => {
       )}
       <div className="container">
         <div className="row row-cols-1 row-cols-md-3 g-4">
-          {ProductData.map((curEvent, index) => ( // Updated to use ProductData
+          {ProductData.map((curEvent, index) => (
             <div key={index} className="col">
               <div className="card h-100">
                 <img src={curEvent.img} alt={curEvent.Title} className="card-img-top img-fluid" />
@@ -57,8 +57,6 @@ const Events = () => {
                   <h5 className="card-title">{curEvent.Title}</h5>
                   <div className='d-flex flex-row'>
                     <p className="card-text">{curEvent.Date}</p>
-                    {/* Hide location text when detail is open */}
-                    {/* {detail === null && <p className="card-text">{curEvent.location}</p>} */}
                   </div>
                   <button className="btn btn-danger" onClick={() => detailPage(curEvent)}>View</button>
                 </div>

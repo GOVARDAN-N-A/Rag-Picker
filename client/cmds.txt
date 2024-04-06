@@ -24,3 +24,7 @@ npm install react-icons
 npm install express cors axios
 
 npm install --sev-dev nodemon
+
+npm install react-image-crop
+
+yarn add socket.io-client

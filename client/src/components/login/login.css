@@ -1,9 +1,9 @@
 /* Reset CSS */
-* {
+/* * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
+} */
 
 /* Full screen background */
 html, body {
@@ -77,4 +77,8 @@ html, body {
 
 .btn:active {
     transform: scale(0.98);
+}
+
+.errorMessage {
+    color: red;
 }
